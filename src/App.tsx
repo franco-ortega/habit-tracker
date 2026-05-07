@@ -4,7 +4,7 @@ import Header from './components/Header';
 
 export default function App() {
 	return (
-		<div className='min-h-screen bg-gray-100'>
+		<div className='min-h-screen'>
 			<Header />
 			<main className='p-4'>
 				<section className='mb-4'>
