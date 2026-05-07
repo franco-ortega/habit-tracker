@@ -1,12 +1,12 @@
 // App will have three sections: Header, Form, and Habit List
 
+import Header from './components/Header';
+
 export default function App() {
 	return (
-		<div className='min-h-screen bg-gray-100'>
-			<header className='bg-blue-500 text-white p-4'>
-				<h1 className='text-xl font-bold'>Habit Tracker</h1>
-			</header>
-			<main className='p-4'>
+		<div className='max-w-2x1 mx-auto p-4 flex flex-col gap-4'>
+			<Header />
+			{/* <main className='p-4'>
 				<section className='mb-4'>
 					<h2 className='text-lg font-semibold'>Add New Habit</h2>
 					<form>
@@ -31,7 +31,7 @@ export default function App() {
 						<li className='border-b border-gray-300 p-2'>Habit 3</li>
 					</ul>
 				</section>
-			</main>
+			</main> */}
 		</div>
 	);
 }
