@@ -1,3 +1,3 @@
 export default function App() {
-	return null;
+	return <h1>Testing</h1>;
 }
