@@ -4,9 +4,9 @@ import Header from './components/Header';
 
 export default function App() {
 	return (
-		<div className='min-h-screen'>
+		<div className='max-w-2x1 mx-auto p-4 flex flex-col gap-4'>
 			<Header />
-			<main className='p-4'>
+			{/* <main className='p-4'>
 				<section className='mb-4'>
 					<h2 className='text-lg font-semibold'>Add New Habit</h2>
 					<form>
@@ -31,7 +31,7 @@ export default function App() {
 						<li className='border-b border-gray-300 p-2'>Habit 3</li>
 					</ul>
 				</section>
-			</main>
+			</main> */}
 		</div>
 	);
 }
