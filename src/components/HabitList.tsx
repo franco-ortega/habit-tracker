@@ -36,11 +36,17 @@ function HabitItem({ habit }: { habit: Habit }) {
 					<p className='font-medium'>{habit.description}</p>
 					<span className='text-sm text-amber-400'>🔥 3</span>
 				</div>
-				<Button variant='ghost-destructive'>Delete</Button>
+				<Button variant='ghost-destructive' className='text-sm'>
+					Delete
+				</Button>
 			</section>
 			<div className='flex gap-1.5'>
 				{visibleDates.map((date) => (
-					<Button key={date.toISOString()} disabled={isFuture(date)}>
+					<Button
+						key={date.toISOString()}
+						disabled={isFuture(date)}
+						className='flex flex-1 flex-col items-center gap-0.5 rounded-lg text-xs'
+					>
 						<span className='font-medium'>{format(date, 'EEE')}</span>
 						<span>{format(date, 'd')}</span>
 					</Button>
