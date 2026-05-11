@@ -22,18 +22,23 @@ const HabitList: React.FC<HabitListProps> = ({ habits }) => {
 	}
 
 	return (
-		<div>
-			<h2>Your Habits</h2>
+		<div className='flex flex-col gap-3'>
 			<ul>
 				{habits.map((habit) => (
-					<li key={habit.id}>
-						<h3>{habit.name}</h3>
-						<p>{habit.description}</p>
-					</li>
+					<HabitItem key={habit.id} habit={habit} />
 				))}
 			</ul>
 		</div>
 	);
 };
+
+function HabitItem({ habit }: { habit: Habit }) {
+	return (
+		<li className='rounded-x1 bg-zinc-800 p-4 flex flex-col gap-3'>
+			<h3 className='flex items-center'>{habit.name}</h3>
+			<p>{habit.description}</p>
+		</li>
+	);
+}
 
 export default HabitList;
