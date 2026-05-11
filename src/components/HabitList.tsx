@@ -1,7 +1,13 @@
 // component to display list of habits that are mapped from the database
 import React from 'react';
 import Button from './Button';
-import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
+import {
+	eachDayOfInterval,
+	endOfWeek,
+	format,
+	isFuture,
+	startOfWeek,
+} from 'date-fns';
 // import { Habit } from '../types';
 
 type Habit = {
@@ -26,7 +32,7 @@ function HabitItem({ habit }: { habit: Habit }) {
 			<p className='flex items-center justify-between'>{habit.description}</p>
 			<div className='flex gap-1.5'>
 				{visibleDates.map((date) => (
-					<Button key={date.toISOString()}>
+					<Button key={date.toISOString()} disabled={isFuture(date)}>
 						<span className='font-medium'>{format(date, 'EEE')}</span>
 						<span>{format(date, 'd')}</span>
 					</Button>
