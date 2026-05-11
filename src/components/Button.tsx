@@ -10,12 +10,13 @@ type Button = {
 export default function Button({
 	children,
 	variant = 'primary',
+	className,
 	...props
 }: Button) {
 	return (
 		<button
 			{...props}
-			className={`${getVariantStyles(variant)} transition-colors rounded px-2 py-1 disabled:opacity-30 disabled:cursor-not-allowed`}
+			className={`${getVariantStyles(variant)} transition-colors rounded px-2 py-1 disabled:opacity-30 disabled:cursor-not-allowed ${className}`}
 		>
 			{children}
 		</button>

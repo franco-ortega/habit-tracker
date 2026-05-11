@@ -5,6 +5,7 @@
 - Vite: `npm create vite@latest .`
 - Tailwind: `npm install tailwindcss @tailwindcss/vite`
 - Date FNS: `npm i date-fns`
+- Tailwind Merge: `npm i tailwind-merge `
 
 ### Sessions
 
