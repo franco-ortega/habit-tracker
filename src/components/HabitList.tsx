@@ -28,8 +28,16 @@ function HabitItem({ habit }: { habit: Habit }) {
 
 	return (
 		<li className='rounded-x1 bg-zinc-800 p-4 flex flex-col gap-3'>
-			<h3 className='flex items-center'>{habit.name}</h3>
-			<p className='flex items-center justify-between'>{habit.description}</p>
+			<section>
+				<h3 className='font-bold text-lg'>{habit.name}</h3>
+			</section>
+			<section className='flex items-center justify-between'>
+				<div className='flex gap-3 items-center'>
+					<p className='font-medium'>{habit.description}</p>
+					<span className='text-sm text-amber-400'>🔥 3</span>
+				</div>
+				<Button variant='ghost-destructive'>Delete</Button>
+			</section>
 			<div className='flex gap-1.5'>
 				{visibleDates.map((date) => (
 					<Button key={date.toISOString()} disabled={isFuture(date)}>
