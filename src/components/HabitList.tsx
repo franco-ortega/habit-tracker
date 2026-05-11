@@ -1,7 +1,7 @@
 // component to display list of habits that are mapped from the database
 import React from 'react';
 import Button from './Button';
-import { startOfWeek } from 'date-fns';
+import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 // import { Habit } from '../types';
 
 type Habit = {
@@ -15,7 +15,10 @@ interface HabitListProps {
 }
 
 function HabitItem({ habit }: { habit: Habit }) {
-	const visibleDates = [new Date(), new Date(), new Date()]; // Example: Show the last 3 days
+	const visibleDates = eachDayOfInterval({
+		start: startOfWeek(new Date()),
+		end: endOfWeek(new Date()),
+	});
 
 	return (
 		<li className='rounded-x1 bg-zinc-800 p-4 flex flex-col gap-3'>
@@ -24,8 +27,8 @@ function HabitItem({ habit }: { habit: Habit }) {
 			<div className='flex gap-1.5'>
 				{visibleDates.map((date) => (
 					<Button key={date.toISOString()}>
-						<span>Mon</span>
-						<span>2</span>
+						<span className='font-medium'>{format(date, 'EEE')}</span>
+						<span>{format(date, 'd')}</span>
 					</Button>
 				))}
 			</div>
