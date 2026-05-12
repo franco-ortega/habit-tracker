@@ -1,7 +1,12 @@
 import { useState, type SubmitEvent } from 'react';
 import Button from './Button';
+import type { Habit } from '../utils/types';
 
-export default function HabitForm() {
+type HabitFormProps = {
+	addHabit: (habit: Habit) => void;
+};
+
+export default function HabitForm({ addHabit }: HabitFormProps) {
 	const [newHabit, setNewHabit] = useState('');
 
 	console.log('New Habit:', newHabit);
@@ -11,6 +16,12 @@ export default function HabitForm() {
 		console.log('Submitting new habit:', newHabit);
 
 		if (newHabit.trim() === '') return;
+
+		addHabit({
+			id: Date.now(),
+			name: newHabit.trim(),
+			description: '',
+		});
 
 		setNewHabit('');
 	};
