@@ -9,33 +9,10 @@ import {
 } from 'date-fns';
 import type { Habit } from '../utils/types';
 import Button from './Button';
+import { useHabits } from '../context/useHabits';
 
-type HabitItemProps = {
-	habit: Habit;
-	deleteHabit: (id: string) => void;
-	toggleHabitCompletion: (id: string, date: Date) => void;
-};
-
-const getStreak = (completedDates: Date[]) => {
-	let streak = 0;
-	let date = new Date();
-
-	while (completedDates.some((c) => isSameDay(c, date))) {
-		streak++;
-		date = subDays(date, 1);
-	}
-
-	return streak;
-};
-
-function HabitItem({
-	habit,
-	deleteHabit,
-	toggleHabitCompletion,
-}: HabitItemProps) {
-	// const habitContext = useContext(HabitContext);
-
-	console.log({ name });
+function HabitItem(habit: Habit) {
+	const { deleteHabit, toggleHabitCompletion } = useHabits();
 
 	const visibleDates = eachDayOfInterval({
 		start: startOfWeek(new Date()),
@@ -87,3 +64,15 @@ function HabitItem({
 }
 
 export default HabitItem;
+
+const getStreak = (completedDates: Date[]) => {
+	let streak = 0;
+	let date = new Date();
+
+	while (completedDates.some((c) => isSameDay(c, date))) {
+		streak++;
+		date = subDays(date, 1);
+	}
+
+	return streak;
+};

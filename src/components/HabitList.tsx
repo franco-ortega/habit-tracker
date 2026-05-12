@@ -1,17 +1,9 @@
-import type { Habit } from '../utils/types';
+import { useHabits } from '../context/useHabits';
 import HabitItem from './HabitItem';
 
-type HabitListProps = {
-	habits: Habit[];
-	deleteHabit: (id: string) => void;
-	toggleHabitCompletion: (id: string, date: Date) => void;
-};
+const HabitList = () => {
+	const { habits } = useHabits();
 
-const HabitList = ({
-	habits,
-	deleteHabit,
-	toggleHabitCompletion,
-}: HabitListProps) => {
 	if (habits.length === 0) {
 		return (
 			<p className='text-center text-zinc-500 py-12'>
@@ -24,12 +16,7 @@ const HabitList = ({
 		<div className='flex flex-col gap-3 rounded-x1'>
 			<ul className='flex flex-col gap-3'>
 				{habits.map((habit) => (
-					<HabitItem
-						key={habit.id}
-						habit={habit}
-						deleteHabit={deleteHabit}
-						toggleHabitCompletion={toggleHabitCompletion}
-					/>
+					<HabitItem key={habit.id} {...habit} />
 				))}
 			</ul>
 		</div>
