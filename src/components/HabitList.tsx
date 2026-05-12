@@ -1,5 +1,10 @@
-import type { HabitListProps } from '../utils/types';
+import type { Habit } from '../utils/types';
 import HabitItem from './HabitItem';
+
+type HabitListProps = {
+	habits: Habit[];
+	deleteHabit: (id: string) => void;
+};
 
 const HabitList = ({ habits, deleteHabit }: HabitListProps) => {
 	if (habits.length === 0) {

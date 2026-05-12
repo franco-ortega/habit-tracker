@@ -8,13 +8,12 @@ import {
 import type { Habit } from '../utils/types';
 import Button from './Button';
 
-function HabitItem({
-	habit,
-	deleteHabit,
-}: {
+type HabitItemProps = {
 	habit: Habit;
-	deleteHabit: (id: number) => void;
-}) {
+	deleteHabit: (id: string) => void;
+};
+
+function HabitItem({ habit, deleteHabit }: HabitItemProps) {
 	const visibleDates = eachDayOfInterval({
 		start: startOfWeek(new Date()),
 		end: endOfWeek(new Date()),

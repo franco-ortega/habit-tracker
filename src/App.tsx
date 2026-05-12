@@ -11,7 +11,7 @@ export default function App() {
 		setHabits((prev) => [...prev, habit]);
 	};
 
-	const deleteHabit = (id: number) => {
+	const deleteHabit = (id: string) => {
 		setHabits((prev) => prev.filter((habit) => habit.id !== id));
 	};
 
