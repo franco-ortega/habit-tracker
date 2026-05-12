@@ -3,6 +3,7 @@ import {
 	endOfWeek,
 	format,
 	isFuture,
+	isSameDay,
 	startOfWeek,
 } from 'date-fns';
 import type { Habit } from '../utils/types';
@@ -11,9 +12,14 @@ import Button from './Button';
 type HabitItemProps = {
 	habit: Habit;
 	deleteHabit: (id: string) => void;
+	toggleHabitCompletion: (id: string, date: Date) => void;
 };
 
-function HabitItem({ habit, deleteHabit }: HabitItemProps) {
+function HabitItem({
+	habit,
+	deleteHabit,
+	toggleHabitCompletion,
+}: HabitItemProps) {
 	const visibleDates = eachDayOfInterval({
 		start: startOfWeek(new Date()),
 		end: endOfWeek(new Date()),
@@ -43,6 +49,12 @@ function HabitItem({ habit, deleteHabit }: HabitItemProps) {
 						key={date.toISOString()}
 						disabled={isFuture(date)}
 						className='flex flex-1 flex-col items-center gap-0.5 rounded-lg text-xs'
+						variant={
+							habit.completedDates?.some((d) => isSameDay(date, d))
+								? 'primary'
+								: 'secondary'
+						}
+						onClick={() => toggleHabitCompletion(habit.id, date)}
 					>
 						<span className='font-medium'>{format(date, 'EEE')}</span>
 						<span>{format(date, 'd')}</span>

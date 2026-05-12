@@ -18,9 +18,10 @@ export default function HabitForm({ addHabit }: HabitFormProps) {
 		if (newHabit.trim() === '') return;
 
 		addHabit({
-			id: Date.now(),
+			id: String(Date.now()),
 			name: newHabit.trim(),
 			description: '',
+			completedDates: [],
 		});
 
 		setNewHabit('');
