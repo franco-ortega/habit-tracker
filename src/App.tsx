@@ -4,7 +4,7 @@ import HabitForm from './components/HabitForm';
 import HabitList from './components/HabitList';
 
 export default function App() {
-	const [viewHabits, setViewHabits] = useState(false);
+	const [viewHabits, setViewHabits] = useState(true);
 
 	return (
 		<div className='max-w-2x1 mx-auto p-4 flex flex-col gap-4'>
