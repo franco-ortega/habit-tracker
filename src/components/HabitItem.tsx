@@ -5,6 +5,7 @@ import {
 	isFuture,
 	isSameDay,
 	startOfWeek,
+	subDays,
 } from 'date-fns';
 import type { Habit } from '../utils/types';
 import Button from './Button';
@@ -15,15 +16,33 @@ type HabitItemProps = {
 	toggleHabitCompletion: (id: string, date: Date) => void;
 };
 
+const getStreak = (completedDates: Date[]) => {
+	let streak = 0;
+	let date = new Date();
+
+	while (completedDates.some((c) => isSameDay(c, date))) {
+		streak++;
+		date = subDays(date, 1);
+	}
+
+	return streak;
+};
+
 function HabitItem({
 	habit,
 	deleteHabit,
 	toggleHabitCompletion,
 }: HabitItemProps) {
+	// const habitContext = useContext(HabitContext);
+
+	console.log({ name });
+
 	const visibleDates = eachDayOfInterval({
 		start: startOfWeek(new Date()),
 		end: endOfWeek(new Date()),
 	});
+
+	const streak = getStreak(habit.completedDates);
 
 	return (
 		<li className='rounded-x1 bg-zinc-800 p-4 flex flex-col gap-3'>
@@ -33,7 +52,9 @@ function HabitItem({
 			<section className='flex items-center justify-between'>
 				<div className='flex gap-3 items-center'>
 					<p className='font-medium'>{habit.description}</p>
-					<span className='text-sm text-amber-400'>🔥 3</span>
+					{streak !== 0 && (
+						<span className='text-sm text-amber-400'>🔥 {streak}</span>
+					)}
 				</div>
 				<Button
 					variant='ghost-destructive'
