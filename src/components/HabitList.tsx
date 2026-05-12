@@ -1,18 +1,9 @@
-// component to display list of habits that are mapped from the database
-import React from 'react';
-// import { Habit } from '../types';
+import { useHabits } from '../context/useHabits';
+import HabitItem from './HabitItem';
 
-type Habit = {
-	id: number;
-	name: string;
-	description: string;
-};
+const HabitList = () => {
+	const { habits } = useHabits();
 
-interface HabitListProps {
-	habits: Habit[];
-}
-
-const HabitList: React.FC<HabitListProps> = ({ habits }) => {
 	if (habits.length === 0) {
 		return (
 			<p className='text-center text-zinc-500 py-12'>
@@ -22,14 +13,10 @@ const HabitList: React.FC<HabitListProps> = ({ habits }) => {
 	}
 
 	return (
-		<div>
-			<h2>Your Habits</h2>
-			<ul>
+		<div className='flex flex-col gap-3 rounded-x1'>
+			<ul className='flex flex-col gap-3'>
 				{habits.map((habit) => (
-					<li key={habit.id}>
-						<h3>{habit.name}</h3>
-						<p>{habit.description}</p>
-					</li>
+					<HabitItem key={habit.id} {...habit} />
 				))}
 			</ul>
 		</div>
