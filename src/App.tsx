@@ -11,13 +11,17 @@ export default function App() {
 		setHabits((prev) => [...prev, habit]);
 	};
 
+	const deleteHabit = (id: number) => {
+		setHabits((prev) => prev.filter((habit) => habit.id !== id));
+	};
+
 	console.log({ habits });
 
 	return (
 		<div className='max-w-2x1 mx-auto p-4 flex flex-col gap-4'>
 			<Header />
 			<HabitForm addHabit={addHabit} />
-			<HabitList habits={habits} />
+			<HabitList habits={habits} deleteHabit={deleteHabit} />
 		</div>
 	);
 }

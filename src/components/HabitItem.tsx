@@ -8,7 +8,13 @@ import {
 import type { Habit } from '../utils/types';
 import Button from './Button';
 
-function HabitItem({ habit }: { habit: Habit }) {
+function HabitItem({
+	habit,
+	deleteHabit,
+}: {
+	habit: Habit;
+	deleteHabit: (id: number) => void;
+}) {
 	const visibleDates = eachDayOfInterval({
 		start: startOfWeek(new Date()),
 		end: endOfWeek(new Date()),
@@ -24,7 +30,11 @@ function HabitItem({ habit }: { habit: Habit }) {
 					<p className='font-medium'>{habit.description}</p>
 					<span className='text-sm text-amber-400'>🔥 3</span>
 				</div>
-				<Button variant='ghost-destructive' className='text-sm'>
+				<Button
+					variant='ghost-destructive'
+					className='text-sm'
+					onClick={() => deleteHabit(habit.id)}
+				>
 					Delete
 				</Button>
 			</section>

@@ -6,4 +6,5 @@ export type Habit = {
 
 export type HabitListProps = {
 	habits: Habit[];
+	deleteHabit: (id: number) => void;
 };
