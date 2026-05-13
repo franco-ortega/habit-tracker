@@ -2,7 +2,13 @@ import { isToday } from 'date-fns';
 import { useHabits } from '../context/useHabits';
 import Button from './Button';
 
-export default function Header() {
+type HeaderProps = {
+	visibleDates: Date[];
+	onNext: () => void;
+	onPrev: () => void;
+};
+
+export default function Header({ visibleDates, onNext, onPrev }: HeaderProps) {
 	const { habits } = useHabits();
 
 	const habitsDoneToday = habits.filter((habit) =>
@@ -11,14 +17,10 @@ export default function Header() {
 		),
 	).length;
 
-	const onNext = () => {
-		console.log('Next week');
-		// create logic to navigate to display the dates for the next week by using the date-fns library to calculate the next week based on the current week and update the state accordingly
-	};
+	const dateRange = `${visibleDates[0].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${visibleDates[visibleDates.length - 1].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
 
-	const onPrev = () => {
-		console.log('Previous week');
-	};
+	console.log(visibleDates);
+
 	return (
 		<header className='flex items-center justify-between'>
 			<div className='flex flex-col gap-1'>
@@ -28,7 +30,7 @@ export default function Header() {
 				</span>
 			</div>
 			<div className='flex flex-col gap-1 items-end'>
-				<span className='text-zinc-400 text-sm'>April 6 - Apr 12 </span>
+				<span className='text-zinc-400 text-sm'>{dateRange}</span>
 				<div className='flex items-center gap-3'>
 					<Button onClick={onPrev}>Prev</Button>
 					<Button onClick={onNext}>Next</Button>
