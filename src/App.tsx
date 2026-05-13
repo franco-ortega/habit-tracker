@@ -11,8 +11,8 @@ export default function App() {
 	const week = addWeeks(new Date(), weekOffset);
 
 	const visibleDates = eachDayOfInterval({
-		start: startOfWeek(week, { weekStartsOn: 1 }),
-		end: endOfWeek(week, { weekStartsOn: 1 }),
+		start: startOfWeek(week, { weekStartsOn: 0 }),
+		end: endOfWeek(week, { weekStartsOn: 0 }),
 	});
 
 	return (
